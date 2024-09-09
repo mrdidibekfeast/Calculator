@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            EqualButton = new Button();
+            equalButton = new Button();
             button0 = new Button();
             negativeButton = new Button();
             plusButton = new Button();
@@ -50,19 +50,21 @@
             marcusCalculatorText = new Label();
             calculatorText = new Label();
             calculationsBox = new TextBox();
+            operatorBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // EqualButton
+            // equalButton
             // 
-            EqualButton.Font = new Font("Segoe UI", 25F);
-            EqualButton.Location = new Point(291, 477);
-            EqualButton.Name = "EqualButton";
-            EqualButton.Size = new Size(130, 63);
-            EqualButton.TabIndex = 0;
-            EqualButton.Text = "=";
-            EqualButton.UseVisualStyleBackColor = true;
-            EqualButton.Click += EqualButton_Click;
+            equalButton.Font = new Font("Segoe UI", 25F);
+            equalButton.Location = new Point(291, 477);
+            equalButton.Name = "equalButton";
+            equalButton.Size = new Size(130, 63);
+            equalButton.TabIndex = 0;
+            equalButton.Tag = "=";
+            equalButton.Text = "=";
+            equalButton.UseVisualStyleBackColor = true;
+            equalButton.Click += EqualButton_Click;
             // 
             // button0
             // 
@@ -93,8 +95,10 @@
             plusButton.Name = "plusButton";
             plusButton.Size = new Size(130, 63);
             plusButton.TabIndex = 3;
+            plusButton.Tag = Operators.Plus;
             plusButton.Text = "+";
             plusButton.UseVisualStyleBackColor = true;
+            plusButton.Click += operator_Click;
             // 
             // minusButton
             // 
@@ -105,6 +109,7 @@
             minusButton.TabIndex = 4;
             minusButton.Text = "-";
             minusButton.UseVisualStyleBackColor = true;
+            minusButton.Click += operator_Click;
             // 
             // multiplyButton
             // 
@@ -115,6 +120,7 @@
             multiplyButton.TabIndex = 5;
             multiplyButton.Text = "X";
             multiplyButton.UseVisualStyleBackColor = true;
+            multiplyButton.Click += operator_Click;
             // 
             // divideButton
             // 
@@ -125,6 +131,7 @@
             divideButton.TabIndex = 6;
             divideButton.Text = "÷";
             divideButton.UseVisualStyleBackColor = true;
+            divideButton.Click += operator_Click;
             // 
             // deleteButton
             // 
@@ -292,16 +299,28 @@
             calculationsBox.Font = new Font("Segoe UI", 30F);
             calculationsBox.Location = new Point(29, 64);
             calculationsBox.Name = "calculationsBox";
+            calculationsBox.ReadOnly = true;
             calculationsBox.Size = new Size(528, 61);
             calculationsBox.TabIndex = 21;
             calculationsBox.TextAlign = HorizontalAlignment.Right;
             calculationsBox.TextChanged += calculationsBox_TextChanged;
+            // 
+            // operatorBox
+            // 
+            operatorBox.Font = new Font("Segoe UI", 30F);
+            operatorBox.Location = new Point(520, 2);
+            operatorBox.Name = "operatorBox";
+            operatorBox.ReadOnly = true;
+            operatorBox.Size = new Size(37, 61);
+            operatorBox.TabIndex = 22;
+            operatorBox.TextAlign = HorizontalAlignment.Right;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(595, 543);
+            Controls.Add(operatorBox);
             Controls.Add(calculationsBox);
             Controls.Add(calculatorText);
             Controls.Add(marcusCalculatorText);
@@ -323,7 +342,7 @@
             Controls.Add(plusButton);
             Controls.Add(negativeButton);
             Controls.Add(button0);
-            Controls.Add(EqualButton);
+            Controls.Add(equalButton);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -334,7 +353,7 @@
 
         #endregion
 
-        private Button EqualButton;
+        private Button equalButton;
         private Button button0;
         private Button negativeButton;
         private Button plusButton;
@@ -356,5 +375,6 @@
         private Label marcusCalculatorText;
         private Label calculatorText;
         private TextBox calculationsBox;
+        private TextBox operatorBox;
     }
 }
