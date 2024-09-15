@@ -6,7 +6,7 @@ namespace Calculator
         int secondNumber = 0;
         int answer = 0;
 
-        Button currentButton;
+     
         public Form1()
         {
             InitializeComponent();
@@ -17,9 +17,11 @@ namespace Calculator
             Plus,
             Minus,
             Multiply,
-            Divide
+            Divide,
+            None
             
         }
+      
 
         Operators operatorUsed;
         private void Form1_Load(object sender, EventArgs e)
@@ -28,29 +30,39 @@ namespace Calculator
             minusButton.Tag = Operators.Minus;
             multiplyButton.Tag = Operators.Multiply;
             divideButton.Tag = Operators.Divide;
-            
         }
 
         private void EqualButton_Click(object sender, EventArgs e)
         {
             secondNumber = int.Parse(calculationsBox.Text);
             calculationsBox.Text = " ";
+            operatorBox.Text = " ";
 
             switch(operatorUsed)
             {
                 case Operators.Plus:
+                    answer = firstNumber + secondNumber;
+                 
                     
                     break;
                 case Operators.Minus:
-
+                    answer = firstNumber - secondNumber;
+                    
+                   
                     break;
                 case Operators.Multiply:
-
+                    answer = firstNumber * secondNumber;
+                   
+                   
                     break;
                 case Operators.Divide:
-
+                    answer = firstNumber / secondNumber;
+                    
                     break;
             }
+            calculationsBox.Text = $"{answer}";
+            operatorUsed = Operators.None;
+            operatorBox.Text = " ";
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -60,15 +72,33 @@ namespace Calculator
         }
         private void operator_Click(object sender, EventArgs e)
         {
+            
+
             Control realSender = (Control)sender;
-            Operators currentOp = (Operators)realSender.Tag!;
+            operatorUsed = (Operators)realSender.Tag!;
 
            
 
             firstNumber = int.Parse(calculationsBox.Text);
-            calculationsBox.Text = " ";
+            calculationsBox.Text = "";
 
-            operatorUsed = currentOp;
+           
+
+            switch (operatorUsed)
+            {
+                case Operators.Plus:
+                    operatorBox.Text = "+";
+                    break;
+                case Operators.Minus:
+                    operatorBox.Text = "-";
+                    break;
+                case Operators.Multiply:
+                    operatorBox.Text = "X";
+                    break;
+                case Operators.Divide:
+                    operatorBox.Text = "÷";
+                    break;
+            }
         }
 
         private void calculationsBox_TextChanged(object sender, EventArgs e)
