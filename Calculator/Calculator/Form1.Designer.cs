@@ -51,6 +51,7 @@
             calculatorText = new Label();
             calculationsBox = new TextBox();
             operatorBox = new TextBox();
+            firstNumberDisplay = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -315,11 +316,22 @@
             operatorBox.TabIndex = 22;
             operatorBox.TextAlign = HorizontalAlignment.Right;
             // 
+            // firstNumberDisplay
+            // 
+            firstNumberDisplay.Font = new Font("Segoe UI", 30F);
+            firstNumberDisplay.Location = new Point(29, 2);
+            firstNumberDisplay.Name = "firstNumberDisplay";
+            firstNumberDisplay.ReadOnly = true;
+            firstNumberDisplay.Size = new Size(485, 61);
+            firstNumberDisplay.TabIndex = 23;
+            firstNumberDisplay.TextAlign = HorizontalAlignment.Right;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(595, 543);
+            Controls.Add(firstNumberDisplay);
             Controls.Add(operatorBox);
             Controls.Add(calculationsBox);
             Controls.Add(calculatorText);
@@ -376,5 +388,6 @@
         private Label calculatorText;
         private TextBox calculationsBox;
         private TextBox operatorBox;
+        private TextBox firstNumberDisplay;
     }
 }

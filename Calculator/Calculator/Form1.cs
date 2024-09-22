@@ -1,3 +1,7 @@
+using System.Diagnostics.Metrics;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
+
 namespace Calculator
 {
     public partial class Form1 : Form
@@ -24,6 +28,10 @@ namespace Calculator
       
 
         Operators operatorUsed;
+        bool opHasBeenUsed = false; 
+
+        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             plusButton.Tag = Operators.Plus;
@@ -63,6 +71,9 @@ namespace Calculator
             calculationsBox.Text = $"{answer}";
             operatorUsed = Operators.None;
             operatorBox.Text = " ";
+            opHasBeenUsed = false;
+            firstNumberDisplay.Text = " ";
+            
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -73,6 +84,35 @@ namespace Calculator
         private void operator_Click(object sender, EventArgs e)
         {
             
+            if(opHasBeenUsed)
+            {
+                secondNumber = int.Parse(calculationsBox.Text);
+                switch (operatorUsed)
+                {
+                    case Operators.Plus:
+                        answer = firstNumber + secondNumber;
+
+
+                        break;
+                    case Operators.Minus:
+                        answer = firstNumber - secondNumber;
+
+
+                        break;
+                    case Operators.Multiply:
+                        answer = firstNumber * secondNumber;
+
+
+                        break;
+                    case Operators.Divide:
+                        answer = firstNumber / secondNumber;
+
+                        break;
+                }
+                calculationsBox.Text = $"{answer}";
+                operatorUsed = Operators.None;
+                operatorBox.Text = " ";
+            }
 
             Control realSender = (Control)sender;
             operatorUsed = (Operators)realSender.Tag!;
@@ -80,6 +120,7 @@ namespace Calculator
            
 
             firstNumber = int.Parse(calculationsBox.Text);
+            firstNumberDisplay.Text = firstNumber.ToString();
             calculationsBox.Text = "";
 
            
@@ -99,6 +140,9 @@ namespace Calculator
                     operatorBox.Text = "÷";
                     break;
             }
+
+
+            opHasBeenUsed = true;
         }
 
         private void calculationsBox_TextChanged(object sender, EventArgs e)
@@ -110,7 +154,7 @@ namespace Calculator
         {
             
             
-            // taG FOR MY Operators is a string so when I press the operator i can check the string to see if it matches up and then i can use that operatore to add or whatevrer
+           
         }
     }
 }
