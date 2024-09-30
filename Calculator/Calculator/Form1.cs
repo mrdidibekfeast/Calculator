@@ -10,7 +10,7 @@ namespace Calculator
         int secondNumber = 0;
         int answer = 0;
 
-     
+
         public Form1()
         {
             InitializeComponent();
@@ -23,14 +23,14 @@ namespace Calculator
             Multiply,
             Divide,
             None
-            
+
         }
-      
+
 
         Operators operatorUsed;
-        bool opHasBeenUsed = false; 
+        bool opHasBeenUsed = false;
 
-        
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -42,38 +42,54 @@ namespace Calculator
 
         private void EqualButton_Click(object sender, EventArgs e)
         {
-            secondNumber = int.Parse(calculationsBox.Text);
-            calculationsBox.Text = " ";
-            operatorBox.Text = " ";
+            if(calculationsBox.Text !=  "")
+            {
+                secondNumber = int.Parse(calculationsBox.Text);
+            }
+           
+            calculationsBox.Text = "";
+            operatorBox.Text = "";
 
-            switch(operatorUsed)
+            switch (operatorUsed)
             {
                 case Operators.Plus:
                     answer = firstNumber + secondNumber;
-                 
-                    
+
+
                     break;
                 case Operators.Minus:
                     answer = firstNumber - secondNumber;
-                    
-                   
+
+
                     break;
                 case Operators.Multiply:
                     answer = firstNumber * secondNumber;
-                   
-                   
+
+
                     break;
                 case Operators.Divide:
-                    answer = firstNumber / secondNumber;
-                    
+
+                    if (secondNumber != 0)
+                    {
+                        answer = firstNumber / secondNumber;
+                    }
+                    else
+                    {
+                        
+                        calculationsBox.Text = "Cannot divide by zero";
+                    }
+
+
+                    //fix divide by zero
+
                     break;
             }
             calculationsBox.Text = $"{answer}";
             operatorUsed = Operators.None;
             operatorBox.Text = " ";
             opHasBeenUsed = false;
-            firstNumberDisplay.Text = " ";
-            
+            firstNumberDisplay.Text = "";
+
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -83,10 +99,13 @@ namespace Calculator
         }
         private void operator_Click(object sender, EventArgs e)
         {
-            
-            if(opHasBeenUsed)
+
+            if (opHasBeenUsed)
             {
-                secondNumber = int.Parse(calculationsBox.Text);
+                if (calculationsBox.Text != "")
+                {
+                    secondNumber = int.Parse(calculationsBox.Text);
+                }
                 switch (operatorUsed)
                 {
                     case Operators.Plus:
@@ -111,19 +130,21 @@ namespace Calculator
                 }
                 calculationsBox.Text = $"{answer}";
                 operatorUsed = Operators.None;
-                operatorBox.Text = " ";
+                operatorBox.Text = "";
             }
 
             Control realSender = (Control)sender;
             operatorUsed = (Operators)realSender.Tag!;
 
-           
 
-            firstNumber = int.Parse(calculationsBox.Text);
-            firstNumberDisplay.Text = firstNumber.ToString();
-            calculationsBox.Text = "";
+            //fix when you click on an operator when nothing is there it crashes
+            if (calculationsBox.Text != "")
+            {
+                firstNumber = int.Parse(calculationsBox.Text);
+                firstNumberDisplay.Text = firstNumber.ToString();
+                calculationsBox.Text = "";
+            }
 
-           
 
             switch (operatorUsed)
             {
@@ -145,16 +166,40 @@ namespace Calculator
             opHasBeenUsed = true;
         }
 
-        private void calculationsBox_TextChanged(object sender, EventArgs e)
+
+
+        private void clearButton_Click(object sender, EventArgs e)
         {
+            calculationsBox.Text = "";
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            char[] numbersInCalc = calculationsBox.Text.ToCharArray();
+            //numbersInCalc[numbersInCalc.Length - 1] 
+
+            if (numbersInCalc.Length != 0)
+            {
+                char[] newNumbersinCalc = new char[numbersInCalc.Length - 1];
+
+                for (int i = 0; i < newNumbersinCalc.Length; i++)
+                {
+                    newNumbersinCalc[i] = numbersInCalc[i];
+                }
+                calculationsBox.Text = new string(newNumbersinCalc);
+            }
+
 
         }
 
-        private void plusButton_Click(object sender, EventArgs e)
+        private void negativeButton_Click(object sender, EventArgs e)
         {
+            if(calculationsBox.Text != "")
+            {
+                int toNegative = int.Parse(calculationsBox.Text);
+                calculationsBox.Text = (toNegative * -1).ToString();
+            }
             
-            
-           
         }
     }
 }

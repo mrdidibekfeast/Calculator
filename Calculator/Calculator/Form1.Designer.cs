@@ -88,6 +88,7 @@
             negativeButton.TabIndex = 2;
             negativeButton.Text = "-/+";
             negativeButton.UseVisualStyleBackColor = true;
+            negativeButton.Click += negativeButton_Click;
             // 
             // plusButton
             // 
@@ -143,6 +144,7 @@
             deleteButton.TabIndex = 7;
             deleteButton.Text = "⌫";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // button3
             // 
@@ -261,6 +263,7 @@
             clearButton.TabIndex = 17;
             clearButton.Text = "C";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // pictureBox1
             // 
@@ -304,7 +307,6 @@
             calculationsBox.Size = new Size(528, 61);
             calculationsBox.TabIndex = 21;
             calculationsBox.TextAlign = HorizontalAlignment.Right;
-            calculationsBox.TextChanged += calculationsBox_TextChanged;
             // 
             // operatorBox
             // 
