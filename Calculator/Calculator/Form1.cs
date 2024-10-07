@@ -29,6 +29,7 @@ namespace Calculator
 
         Operators operatorUsed;
         bool opHasBeenUsed = false;
+        bool divideByZero = false;
 
 
 
@@ -75,16 +76,20 @@ namespace Calculator
                     }
                     else
                     {
-                        
-                        calculationsBox.Text = "Cannot divide by zero";
+                        divideByZero = true;
                     }
-
-
-                    //fix divide by zero
 
                     break;
             }
-            calculationsBox.Text = $"{answer}";
+            if(divideByZero == false)
+            {
+                calculationsBox.Text = $"{answer}";
+            } 
+            else
+            {
+                calculationsBox.Text = "Cannot divide by zero";
+            }
+   
             operatorUsed = Operators.None;
             operatorBox.Text = " ";
             opHasBeenUsed = false;
@@ -96,6 +101,12 @@ namespace Calculator
         {
 
             calculationsBox.Text += ((Control)sender).Tag;
+
+            if(divideByZero)
+            {
+                calculationsBox.Text = "";
+                divideByZero = false;
+            }
         }
         private void operator_Click(object sender, EventArgs e)
         {
@@ -188,7 +199,6 @@ namespace Calculator
                 }
                 calculationsBox.Text = new string(newNumbersinCalc);
             }
-
 
         }
 
