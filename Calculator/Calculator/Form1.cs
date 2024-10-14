@@ -1,7 +1,3 @@
-using System.Diagnostics.Metrics;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
-
 namespace Calculator
 {
     public partial class Form1 : Form
@@ -43,11 +39,11 @@ namespace Calculator
 
         private void EqualButton_Click(object sender, EventArgs e)
         {
-            if(calculationsBox.Text !=  "")
+            if (int.TryParse(calculationsBox.Text, out int calculationsBoxNumber2))
             {
-                secondNumber = int.Parse(calculationsBox.Text);
+                secondNumber = calculationsBoxNumber2;
             }
-           
+
             calculationsBox.Text = "";
             operatorBox.Text = "";
 
@@ -81,15 +77,15 @@ namespace Calculator
 
                     break;
             }
-            if(divideByZero == false)
+            if (divideByZero == false)
             {
                 calculationsBox.Text = $"{answer}";
-            } 
+            }
             else
             {
                 calculationsBox.Text = "Cannot divide by zero";
             }
-   
+
             operatorUsed = Operators.None;
             operatorBox.Text = " ";
             opHasBeenUsed = false;
@@ -97,25 +93,29 @@ namespace Calculator
 
         }
 
-        private void button_Click(object sender, EventArgs e)
+        private void Button_Click(object sender, EventArgs e)
         {
 
             calculationsBox.Text += ((Control)sender).Tag;
 
-            if(divideByZero)
+            if (divideByZero)
             {
                 calculationsBox.Text = "";
                 divideByZero = false;
             }
         }
-        private void operator_Click(object sender, EventArgs e)
+        private void Operator_Click(object sender, EventArgs e)
         {
 
             if (opHasBeenUsed)
             {
-                if (calculationsBox.Text != "")
+                if (int.TryParse(calculationsBox.Text, out int calculationsBoxNumber3))
                 {
-                    secondNumber = int.Parse(calculationsBox.Text);
+                    secondNumber = calculationsBoxNumber3;
+                }
+                else
+                {
+                    calculationsBox.Text = "You can't do that";
                 }
                 switch (operatorUsed)
                 {
@@ -135,8 +135,14 @@ namespace Calculator
 
                         break;
                     case Operators.Divide:
-                        answer = firstNumber / secondNumber;
-
+                        if (secondNumber != 0)
+                        {
+                            answer = firstNumber / secondNumber;
+                        }
+                        else
+                        {
+                            calculationsBox.Text = "You can't do that";
+                        }
                         break;
                 }
                 calculationsBox.Text = $"{answer}";
@@ -147,13 +153,17 @@ namespace Calculator
             Control realSender = (Control)sender;
             operatorUsed = (Operators)realSender.Tag!;
 
+            //fix divide by zero
 
-            //fix when you click on an operator when nothing is there it crashes
-            if (calculationsBox.Text != "")
+            if (int.TryParse(calculationsBox.Text, out int calculationBoxNumber))
             {
-                firstNumber = int.Parse(calculationsBox.Text);
+                firstNumber = calculationBoxNumber;
                 firstNumberDisplay.Text = firstNumber.ToString();
                 calculationsBox.Text = "";
+            }
+            else
+            {
+                calculationsBox.Text = "You can't do that";
             }
 
 
@@ -179,12 +189,12 @@ namespace Calculator
 
 
 
-        private void clearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             calculationsBox.Text = "";
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             char[] numbersInCalc = calculationsBox.Text.ToCharArray();
             //numbersInCalc[numbersInCalc.Length - 1] 
@@ -202,14 +212,14 @@ namespace Calculator
 
         }
 
-        private void negativeButton_Click(object sender, EventArgs e)
+        private void NegativeButton_Click(object sender, EventArgs e)
         {
-            if(calculationsBox.Text != "")
+            if (calculationsBox.Text != "")
             {
                 int toNegative = int.Parse(calculationsBox.Text);
                 calculationsBox.Text = (toNegative * -1).ToString();
             }
-            
+
         }
     }
 }

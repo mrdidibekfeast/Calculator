@@ -77,7 +77,7 @@
             button0.Tag = "0";
             button0.Text = "0";
             button0.UseVisualStyleBackColor = true;
-            button0.Click += button_Click;
+            button0.Click += Button_Click;
             // 
             // negativeButton
             // 
@@ -88,7 +88,7 @@
             negativeButton.TabIndex = 2;
             negativeButton.Text = "-/+";
             negativeButton.UseVisualStyleBackColor = true;
-            negativeButton.Click += negativeButton_Click;
+            negativeButton.Click += NegativeButton_Click;
             // 
             // plusButton
             // 
@@ -100,7 +100,7 @@
             plusButton.Tag = Operators.Plus;
             plusButton.Text = "+";
             plusButton.UseVisualStyleBackColor = true;
-            plusButton.Click += operator_Click;
+            plusButton.Click += Operator_Click;
             // 
             // minusButton
             // 
@@ -111,7 +111,7 @@
             minusButton.TabIndex = 4;
             minusButton.Text = "-";
             minusButton.UseVisualStyleBackColor = true;
-            minusButton.Click += operator_Click;
+            minusButton.Click += Operator_Click;
             // 
             // multiplyButton
             // 
@@ -122,7 +122,7 @@
             multiplyButton.TabIndex = 5;
             multiplyButton.Text = "X";
             multiplyButton.UseVisualStyleBackColor = true;
-            multiplyButton.Click += operator_Click;
+            multiplyButton.Click += Operator_Click;
             // 
             // divideButton
             // 
@@ -133,7 +133,7 @@
             divideButton.TabIndex = 6;
             divideButton.Text = "÷";
             divideButton.UseVisualStyleBackColor = true;
-            divideButton.Click += operator_Click;
+            divideButton.Click += Operator_Click;
             // 
             // deleteButton
             // 
@@ -144,7 +144,7 @@
             deleteButton.TabIndex = 7;
             deleteButton.Text = "⌫";
             deleteButton.UseVisualStyleBackColor = true;
-            deleteButton.Click += deleteButton_Click;
+            deleteButton.Click += DeleteButton_Click;
             // 
             // button3
             // 
@@ -156,7 +156,7 @@
             button3.Tag = "3";
             button3.Text = "3";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button_Click;
+            button3.Click += Button_Click;
             // 
             // button2
             // 
@@ -168,7 +168,7 @@
             button2.Tag = "2";
             button2.Text = "2";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button_Click;
+            button2.Click += Button_Click;
             // 
             // button1
             // 
@@ -180,7 +180,7 @@
             button1.Tag = "1";
             button1.Text = "1";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button_Click;
+            button1.Click += Button_Click;
             // 
             // button4
             // 
@@ -192,7 +192,7 @@
             button4.Tag = "4";
             button4.Text = "4";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button_Click;
+            button4.Click += Button_Click;
             // 
             // button5
             // 
@@ -204,7 +204,7 @@
             button5.Tag = "5";
             button5.Text = "5";
             button5.UseVisualStyleBackColor = true;
-            button5.Click += button_Click;
+            button5.Click += Button_Click;
             // 
             // button6
             // 
@@ -216,7 +216,7 @@
             button6.Tag = "6";
             button6.Text = "6";
             button6.UseVisualStyleBackColor = true;
-            button6.Click += button_Click;
+            button6.Click += Button_Click;
             // 
             // button7
             // 
@@ -228,7 +228,7 @@
             button7.Tag = "7";
             button7.Text = "7";
             button7.UseVisualStyleBackColor = true;
-            button7.Click += button_Click;
+            button7.Click += Button_Click;
             // 
             // button8
             // 
@@ -240,7 +240,7 @@
             button8.Tag = "8";
             button8.Text = "8";
             button8.UseVisualStyleBackColor = true;
-            button8.Click += button_Click;
+            button8.Click += Button_Click;
             // 
             // button9
             // 
@@ -252,7 +252,7 @@
             button9.Tag = "9";
             button9.Text = "9";
             button9.UseVisualStyleBackColor = true;
-            button9.Click += button_Click;
+            button9.Click += Button_Click;
             // 
             // clearButton
             // 
@@ -263,7 +263,7 @@
             clearButton.TabIndex = 17;
             clearButton.Text = "C";
             clearButton.UseVisualStyleBackColor = true;
-            clearButton.Click += clearButton_Click;
+            clearButton.Click += ClearButton_Click;
             // 
             // pictureBox1
             // 
